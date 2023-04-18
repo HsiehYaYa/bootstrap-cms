@@ -1,0 +1,127 @@
+$sidebar-width: 280px;
+$primary-color-1: #3d1101;
+$primary-color-2: #e1a679;
+$accent-color-1: #f8f4f4;
+$accent-color-2: #efe9e7;
+
+//行動版(預設)(側欄關起)
+.sidebar{
+    width: $sidebar-width;
+    margin-left: -$sidebar-width;
+    transition: margin-left .25s;
+    background-color: $accent-color-1;
+    position: fixed;
+    top:0;
+    a{
+        display: block;
+        text-decoration: none;
+    }
+    .logo,.sidebar-link,.sidebar-out{
+        color: $primary-color-1;
+    }
+    .sidebar-link{
+        margin: 0rem  1rem;
+        padding: .5rem 1rem;
+        border-radius: 18px;
+        transition: all .25s;
+        &:hover{
+            color: $primary-color-2;
+        }
+    }
+    .sidebar-link.active{
+        color: $primary-color-2;
+        background-color: $white;
+    }
+    .sidebar-out{
+        font-weight: bolder;
+        padding: 1rem 2rem;
+        background-color: $accent-color-2;
+        &:hover{
+            color: $gray-600;
+        }
+    }
+}
+
+.main{
+    width: 100%;
+    color: #3d1101;
+    .card{
+        overflow: hidden;
+        background-color: $accent-color-1;
+    }
+    .card-text{
+        color: $primary-color-2;
+    }
+    .thead-item,.btn,.page-link,.nav-link{
+        color: $primary-color-1;
+    }
+    .nav-item .active{
+        background-color: $primary-color-1;
+    }
+    .badge-color{
+        background-color: $primary-color-2;
+        color: $white;
+    }
+    .thead-item,.card-footer{
+        background-color: $accent-color-2;
+    }
+    .form-check-input:checked {
+        background-color: $primary-color-2;
+        border-color: $primary-color-2;
+    }
+    .btn{
+        border: 1px solid $primary-color-1;
+        &:hover{
+            color: $white;
+            background-color: $primary-color-1;
+        }
+    }
+    .btn2{
+        background-color: transparent;
+        color: $danger;
+        border:1px solid $danger;
+        &:hover{
+            color: $white;
+            background-color: $danger;
+        }
+    }
+}
+
+//行動版展開sidebar
+.sidebar-toggled{
+    .sidebar{
+        margin-left: 0;
+    }
+    .main{
+        margin-left: $sidebar-width;
+        transition: margin-left .25s;
+    }
+}
+
+///////////////
+
+//電腦版(側欄打開)
+@include media-breakpoint-up(lg){
+    .sidebar{
+        width: $sidebar-width;
+        margin-left: 0;
+    }
+
+    //calc可用來做算式。變數要加上＃{}才能做計算。
+    .main{
+        width: calc(100vw - #{$sidebar-width});
+        margin-left: $sidebar-width;
+        transition: margin-left .25s;
+    }
+
+    //電腦版展開main
+    .sidebar-toggled{
+        .sidebar{
+            margin-left: -$sidebar-width;
+        }
+        .main{
+            width: 100%;
+            margin-left: 0;
+        }
+    }
+}
